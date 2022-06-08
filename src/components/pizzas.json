@@ -4,6 +4,8 @@
     "category": "Пицца",
     "title": "4 сыра",
     "image": "https://images.dominos.by/media/dominos/osg/api/2022/06/08/4_sezona_259x259.png",
+    "types": [0, 1],
+    "sizes": [26, 35, 50],
     "price": 38.48,
     "rank": 3
   },
@@ -12,6 +14,8 @@
     "category": "Пицца",
     "title": "Карбонара",
     "image": "https://images.dominos.by/media/dominos/osg/api/2018/09/12/carbonara.png",
+    "types": [0, 1],
+    "sizes": [26, 35, 50],
     "price": 30.98,
     "rank": 1
   },
@@ -20,6 +24,8 @@
     "category": "Пицца",
     "title": "Мюнхенская",
     "image": "https://images.dominos.by/media/dominos/osg/api/2019/07/03/myunkhenskaya_small.png",
+    "types": [1],
+    "sizes": [26, 50],
     "price": 36.48,
     "rank": 2
   },
@@ -28,6 +34,8 @@
     "category": "Пицца",
     "title": "С говном",
     "image": "https://images.dominos.by/media/dominos/osg/api/2020/01/09/gipnotika_small.png",
+    "types": [0, 1],
+    "sizes": [26, 35, 50],
     "price": 49.95
   },
   {
@@ -35,6 +43,8 @@
     "category": "Пицца",
     "title": "Говядина",
     "image": "https://images.dominos.by/media/dominos/osg/api/2020/03/11/govyadina_burger_small.png",
+    "types": [0, 1],
+    "sizes": [26, 35, 50],
     "price": 30.98
   },
   {
@@ -42,6 +52,8 @@
     "category": "Пицца",
     "title": "Фермерская",
     "image": "https://images.dominos.by/media/dominos/osg/api/2019/10/18/fermerskaya_small.png",
+    "types": [0, 1],
+    "sizes": [26, 35, 50],
     "price": 29.95
   },
   {
@@ -49,6 +61,8 @@
     "category": "Пицца",
     "title": "Спайси",
     "image": "https://images.dominos.by/media/dominos/osg/api/2018/09/12/spice.png",
+    "types": [0],
+    "sizes": [26, 50],
     "price": 30.95
   },
   {
@@ -56,6 +70,8 @@
     "category": "Пицца",
     "title": "Маргарита",
     "image": "https://images.dominos.by/media/dominos/osg/api/2018/09/12/margarita.png",
+    "types": [0, 1],
+    "sizes": [26, 35, 50],
     "price": 21.98
   },
   {
@@ -63,6 +79,8 @@
     "category": "Пицца",
     "title": "Пепперони",
     "image": "https://images.dominos.by/media/dominos/osg/api/2018/09/12/pepperoni.png",
+    "types": [0],
+    "sizes": [35, 50],
     "price": 28.98
   },
   {
@@ -70,6 +88,8 @@
     "category": "Пицца",
     "title": "Ветчина и грибы",
     "image": "https://images.dominos.by/media/dominos/osg/api/2018/09/12/vetchina_i_griby.png",
+    "types": [0, 1],
+    "sizes": [35, 50],
     "price": 28.98
   }
 ]
