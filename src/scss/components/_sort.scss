@@ -8,10 +8,14 @@
 
     svg {
       margin-right: 8px;
+      &.desc {
+        transform: rotate(180deg);
+      }
     }
 
     b {
       margin-right: 8px;
+      cursor: pointer;
     }
 
     span {

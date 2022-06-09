@@ -1,16 +1,18 @@
 import React from 'react';
 
-function Sort() {
+function Sort({ value, order, onChangeSort, onChangeOrder }) {
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState(0);
 
   const selectSorting = index => {
-    setSelected(index);
+    onChangeSort(index);
     setOpen(false);
   };
 
-  const sortBy = ['популярности', 'цене', 'алфавиту'];
-  const currentSort = sortBy[selected];
+  const sortOptions = [
+    { name: 'популярности', sortProperty: 'rating' },
+    { name: 'цене', sortProperty: 'price' },
+    { name: 'алфавиту', sortProperty: 'title' },
+  ];
 
   return (
     <div className="sort">
@@ -20,24 +22,25 @@ function Sort() {
           height="6"
           viewBox="0 0 10 6"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+          className={order ? 'desc' : 'asc'}>
           <path
             d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}>{currentSort}</span>
+        <b onClick={() => onChangeOrder(!order)}>Сортировка по:</b>
+        <span onClick={() => setOpen(!open)}>{value.name}</span>
       </div>
       {open && (
         <div className="sort__popup">
           <ul>
-            {sortBy.map((el, index) => (
+            {sortOptions.map((el, index) => (
               <li
-                key={el}
-                className={index === selected ? 'active' : ''}
-                onClick={() => selectSorting(index)}>
-                {el}
+                key={index}
+                className={value.sortProperty === el.sortProperty ? 'active' : ''}
+                onClick={() => selectSorting(el)}>
+                {el.name}
               </li>
             ))}
           </ul>
