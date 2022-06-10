@@ -2,10 +2,10 @@ import React from 'react';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
+import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [activeCategory, setActiveCategory] = React.useState('Все');
@@ -31,6 +31,11 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, [activeCategory, sortBy, order]);
 
+  const pizzas = items
+    .filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()))
+    .map(({ ...props }) => <PizzaBlock key={props.title} {...props} />);
+  const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
+
   return (
     <>
       <div className="content__top">
@@ -38,11 +43,7 @@ const Home = () => {
         <Sort value={sortBy} order={order} onChangeSort={setSortBy} onChangeOrder={setOrder} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-          : items.map(({ ...props }) => <PizzaBlock key={props.title} {...props} />)}
-      </div>
+      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
     </>
   );
 };
