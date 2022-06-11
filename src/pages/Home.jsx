@@ -50,7 +50,7 @@ const Home = ({ searchValue }) => {
         <Categories value={activeCategory} onChangeCategory={setActiveCategory} />
         <Sort value={sortBy} order={order} onChangeSort={setSortBy} onChangeOrder={setOrder} />
       </div>
-      {!items.length && <NotFound />}
+      {!items.length && !isLoading && <NotFound />}
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
       <Pagination pages={pagesAmount} onChangePage={num => setCurrentPage(num)} />
     </>
