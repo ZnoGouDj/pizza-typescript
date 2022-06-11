@@ -5,6 +5,7 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
+import NotFound from './NotFound';
 
 const Home = ({ searchValue }) => {
   const [items, setItems] = React.useState([]);
@@ -49,7 +50,7 @@ const Home = ({ searchValue }) => {
         <Categories value={activeCategory} onChangeCategory={setActiveCategory} />
         <Sort value={sortBy} order={order} onChangeSort={setSortBy} onChangeOrder={setOrder} />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      {!items.length && <NotFound />}
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
       <Pagination pages={pagesAmount} onChangePage={num => setCurrentPage(num)} />
     </>

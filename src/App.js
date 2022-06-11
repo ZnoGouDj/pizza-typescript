@@ -7,21 +7,29 @@ import Cart from './pages/Cart';
 
 import './scss/app.scss';
 
+const SearchContext = React.createContext('');
+console.log(SearchContext);
+
+// сделать "УПС, ПИЦЦ НЕТ" на закрытой пицце
+// сделать переход на 1ю страницу при смене категории
+
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
 
   return (
     <div className="wrapper">
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-      <div className="content">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home searchValue={searchValue} />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+        <Header />
+        <div className="content">
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home searchValue={searchValue} />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      </SearchContext.Provider>
     </div>
   );
 }
