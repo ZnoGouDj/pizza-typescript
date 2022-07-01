@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setActiveCategory } from '../redux/slices/filterSlice';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -9,14 +11,19 @@ import NotFound from './NotFound';
 import { SearchContext } from '../App';
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { activeCategory, sort } = useSelector(state => state.filter);
+
   const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [activeCategory, setActiveCategory] = React.useState('Все');
-  const [sortBy, setSortBy] = React.useState({ name: 'популярности', sortProperty: 'rating' });
   const [order, setOrder] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [pagesAmount, setPagesAmount] = React.useState(0);
+
+  const onChangeCategory = id => {
+    dispatch(setActiveCategory(id));
+  };
 
   React.useEffect(() => {
     let category = activeCategory === 'Все' ? '' : activeCategory;
@@ -28,7 +35,7 @@ const Home = () => {
     fetch(
       `https://62a0f78a7b9345bcbe4358a7.mockapi.io/items?limit=100&${
         'category=' + category
-      }&sortBy=${sortBy.sortProperty}&order=${order ? 'asc' : 'desc'}${search}`,
+      }&sortBy=${sort.sortProperty}&order=${order ? 'asc' : 'desc'}${search}`,
     )
       .then(res => res.json())
       .then(arr => {
@@ -38,7 +45,7 @@ const Home = () => {
       });
 
     window.scrollTo(0, 0);
-  }, [activeCategory, sortBy, order, searchValue, currentPage]);
+  }, [activeCategory, sort.sortProperty, order, searchValue, currentPage]);
 
   const pizzas = items
     .filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()))
@@ -49,8 +56,8 @@ const Home = () => {
   return (
     <>
       <div className="content__top">
-        <Categories value={activeCategory} onChangeCategory={setActiveCategory} />
-        <Sort value={sortBy} order={order} onChangeSort={setSortBy} onChangeOrder={setOrder} />
+        <Categories value={activeCategory} onChangeCategory={onChangeCategory} />
+        <Sort order={order} setOrder={setOrder} />
       </div>
       {!items.length && !isLoading && <NotFound />}
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
