@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveCategory } from '../redux/slices/filterSlice';
 
@@ -32,16 +33,16 @@ const Home = () => {
 
     const search = searchValue ? `search=${searchValue}` : '';
 
-    fetch(
-      `https://62a0f78a7b9345bcbe4358a7.mockapi.io/items?limit=100&${
-        'category=' + category
-      }&sortBy=${sort.sortProperty}&order=${order ? 'asc' : 'desc'}${search}`,
-    )
-      .then(res => res.json())
-      .then(arr => {
-        setItems(arr);
+    axios
+      .get(
+        `https://62a0f78a7b9345bcbe4358a7.mockapi.io/items?limit=100&${
+          'category=' + category
+        }&sortBy=${sort.sortProperty}&order=${order ? 'asc' : 'desc'}${search}`,
+      )
+      .then(res => {
+        setItems(res.data);
         setIsLoading(false);
-        setPagesAmount(Math.ceil(arr.length / 4));
+        setPagesAmount(Math.ceil(res.data.length / 4));
       });
 
     window.scrollTo(0, 0);
