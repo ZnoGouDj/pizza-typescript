@@ -11,6 +11,7 @@ export const sortOptions = [
 function Sort({ order, setOrder }) {
   const dispatch = useDispatch();
   const sort = useSelector(state => state.filter.sort);
+  const sortRef = React.useRef();
 
   const [open, setOpen] = React.useState(false);
 
@@ -19,8 +20,22 @@ function Sort({ order, setOrder }) {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    const handleOutsideClick = e => {
+      if (!e.path.includes(sortRef.current)) {
+        setOpen(false);
+        console.log('greiowbenrb s');
+      }
+    };
+
+    document.body.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.body.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
