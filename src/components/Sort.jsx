@@ -24,7 +24,6 @@ function Sort({ order, setOrder }) {
     const handleOutsideClick = e => {
       if (!e.path.includes(sortRef.current)) {
         setOpen(false);
-        console.log('greiowbenrb s');
       }
     };
 
