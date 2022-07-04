@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import logo from '../img/pizza-logo.svg';
+import logo from '../assets/img/pizza-logo.svg';
 import Search from './Search';
 
 function Header() {
