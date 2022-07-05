@@ -22,7 +22,19 @@ body {
 }
 
 .content {
-  padding: 40px 0;
+  padding: 20px 0;
+
+  &__error-info {
+    margin: 60px auto;
+    width: 520px;
+    text-align: center;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+  }
 
   &__title {
     margin: 60px 0 50px;
@@ -54,6 +66,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 60px;
 
     @media (max-width: 1260px) {
       .categories {
