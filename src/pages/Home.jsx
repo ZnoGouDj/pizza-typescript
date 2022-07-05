@@ -17,7 +17,6 @@ import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import NotFound from './NotFound';
-import { SearchContext } from '../App';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,9 +25,8 @@ const Home = () => {
   const isMounted = React.useRef(false);
 
   const { items, status } = useSelector(selectPizzaData);
-  const { activeCategory, sort, currentPage } = useSelector(selectFilter);
+  const { activeCategory, sort, currentPage, searchValue } = useSelector(selectFilter);
 
-  const { searchValue } = React.useContext(SearchContext);
   const [order, setOrder] = React.useState(true);
 
   const onChangeCategory = id => {
