@@ -1,7 +1,6 @@
 import React from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFilter,
@@ -95,7 +94,7 @@ const Home = () => {
 
   const pizzas = items
     .filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()))
-    .map(({ ...props }) => <PizzaBlock key={props.title} {...props} />)
+    .map(obj => <PizzaBlock key={obj.id} {...obj} />)
     .slice((currentPage - 1) * 4, (currentPage - 1) * 4 + 4);
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
