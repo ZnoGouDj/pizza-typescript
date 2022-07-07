@@ -17,7 +17,7 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import NotFound from './NotFound';
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isSearch = React.useRef(false);
@@ -28,12 +28,12 @@ const Home = () => {
 
   const [order, setOrder] = React.useState(true);
 
-  const onChangeCategory = id => {
-    dispatch(setActiveCategory(id));
+  const onChangeCategory = (idx: number) => {
+    dispatch(setActiveCategory(idx));
   };
 
-  const onChangePage = number => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   const getPizzas = async () => {
@@ -42,6 +42,7 @@ const Home = () => {
     const search = searchValue ? `search=${searchValue}` : '';
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         sort,
         order,
@@ -93,8 +94,8 @@ const Home = () => {
   }, [activeCategory, sort.sortProperty, order, searchValue, currentPage]);
 
   const pizzas = items
-    .filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()))
-    .map(obj => <PizzaBlock key={obj.id} {...obj} />)
+    .filter((el: any) => el.title.toLowerCase().includes(searchValue.toLowerCase()))
+    .map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)
     .slice((currentPage - 1) * 4, (currentPage - 1) * 4 + 4);
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
