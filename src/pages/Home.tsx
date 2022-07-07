@@ -28,8 +28,8 @@ const Home: React.FC = () => {
 
   const [order, setOrder] = React.useState(true);
 
-  const onChangeCategory = (idx: number) => {
-    dispatch(setActiveCategory(idx));
+  const onChangeCategory = (category: string) => {
+    dispatch(setActiveCategory(category));
   };
 
   const onChangePage = (page: number) => {
