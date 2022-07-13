@@ -25,6 +25,7 @@ const Home: React.FC = () => {
 
   const { items, status } = useSelector(selectPizzaData);
   const { activeCategory, sort, currentPage, searchValue } = useSelector(selectFilter);
+  const sortBy = sort.sortProperty;
 
   const [order, setOrder] = React.useState(true);
 
@@ -44,7 +45,7 @@ const Home: React.FC = () => {
     dispatch(
       // @ts-ignore
       fetchPizzas({
-        sort,
+        sortBy,
         order,
         category,
         search,
