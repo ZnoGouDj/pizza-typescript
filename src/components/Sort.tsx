@@ -17,7 +17,12 @@ export const sortOptions: SortItem[] = [
   { name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE },
 ];
 
-function SortPopup({ order, setOrder }) {
+type SortPopupProps = {
+  order: boolean;
+  setOrder: (e: boolean) => void;
+};
+
+const SortPopup: React.FC<SortPopupProps> = React.memo(({ order, setOrder }) => {
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
   const sortRef = React.useRef<HTMLDivElement>(null);
@@ -77,6 +82,6 @@ function SortPopup({ order, setOrder }) {
       )}
     </div>
   );
-}
+});
 
 export default SortPopup;
