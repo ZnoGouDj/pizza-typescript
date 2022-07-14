@@ -31,9 +31,9 @@ const Home: React.FC = () => {
 
   const [order, setOrder] = React.useState(true);
 
-  const onChangeCategory = (category: string) => {
+  const onChangeCategory = React.useCallback((category: string) => {
     dispatch(setActiveCategory(category));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));

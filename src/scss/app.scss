@@ -213,7 +213,7 @@ body {
           }
         }
 
-        &--disabled {
+        &:disabled {
           opacity: 0.4;
           border-color: #787878;
 
