@@ -9,11 +9,8 @@ import { useAppDispatch } from '../redux/store';
 import { selectFilter } from '../redux/filter/selectors';
 import { selectPizzaData } from '../redux/pizza/selectors';
 
-import Categories from '../components/Categories';
-import Sort, { sortOptions } from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination';
+import { sortOptions } from '../components/Sort';
+import { Pagination, Skeleton, PizzaBlock, Sort, Categories } from '../components';
 import NotFound from './NotFound';
 
 const Home: React.FC = () => {
